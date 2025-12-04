@@ -37,9 +37,9 @@ cash-flow-minimiser/
 │── src/
 │   └── main.cpp                # Core C++ implementation
 │── results/
-│   └── result.png             # Actual output generated from your program
+│   └── result.png              # Actual output generated from the program
 │── README.md                   # Project documentation
-│── .gitignore                  # Optional but recommended
+│── .gitignore                 
 ```
 ## Results
 The results show:
