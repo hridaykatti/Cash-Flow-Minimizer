@@ -41,7 +41,8 @@ cash-flow-minimiser/
 │── README.md                   # Project documentation
 │── .gitignore                  # Optional but recommended
 ```
-This results show:
+## Results
+The results show:
 - Reduced number of transaction edges  
 - Guaranteed payment compatibility  
 - Correct flow balancing between debtors and creditors 
