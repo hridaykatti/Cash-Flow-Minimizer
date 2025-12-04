@@ -5,14 +5,12 @@
 #include <set>
 #include <climits>
 using namespace std;
-// Class to represent a bank
 class bank {
 public:
 string name;
 int netAmount;
-set<string> types; // Types of payment modes the bank supports
+set<string> types; 
 };
-// Function to get the index of the bank with the minimum net amount
 int getMinIndex(vector<bank>& listOfNetAmounts) {
 int min = INT_MAX, minIndex = -1;
 for (int i = 0; i < listOfNetAmounts.size(); i++) {
@@ -24,7 +22,6 @@ min = listOfNetAmounts[i].netAmount;
 }
 return minIndex;
 }
-// Function to get the index of the bank with the maximum net amount
 int getSimpleMaxIndex(vector<bank>& listOfNetAmounts) {
 int max = INT_MIN, maxIndex = -1;
 for (int i = 0; i < listOfNetAmounts.size(); i++) {
@@ -36,7 +33,6 @@ max = listOfNetAmounts[i].netAmount;
 }
 return maxIndex;
 }
-// Function to get the index of the bank with the maximum net amount and a common payment type
 pair<int, string> getMaxIndex(vector<bank>& listOfNetAmounts, int minIndex, vector<bank>& input, int maxNumTypes) {
 int max = INT_MIN;
 int maxIndex = -1;
@@ -58,7 +54,6 @@ matchingType = *(v.begin());
 }
 return make_pair(maxIndex, matchingType);
 }
-// Function to print the minimized transactions
 void printAns(vector<vector<pair<int, string>>>& ansGraph, int numBanks, vector<bank>& input) {
 cout << "\nThe transactions for minimum cash flow are as follows : \n\n";
 for (int i = 0; i < numBanks; i++) {
@@ -85,14 +80,11 @@ cout << input[j].name << " pays Rs " << ansGraph[j][i].first << " to " << input[
 ansGraph[i][j].first = 0;
 ansGraph[j][i].first = 0;
 }
-7
 }
 cout << "\n";
 }
-// Function to minimize the cash flow
 void minimizeCashFlow(int numBanks, vector<bank>& input, unordered_map<string, int>& indexOf, int numTransactions, vector<vector<int>>& graph, int maxNumTypes) {
 vector<bank> listOfNetAmounts(numBanks);
-// Calculate net amounts for each bank
 for (int b = 0; b < numBanks; b++) {
 listOfNetAmounts[b].name = input[b].name;
 listOfNetAmounts[b].types = input[b].types;
@@ -110,13 +102,11 @@ int numZeroNetAmounts = 0;
 for (int i = 0; i < numBanks; i++) {
 if (listOfNetAmounts[i].netAmount == 0) numZeroNetAmounts++;
 }
-// Minimize transactions
 while (numZeroNetAmounts != numBanks) {
 int minIndex = getMinIndex(listOfNetAmounts);
 pair<int, string> maxAns = getMaxIndex(listOfNetAmounts, minIndex, input, maxNumTypes);
 int maxIndex = maxAns.first;
 if (maxIndex == -1) {
-// No common type, use intermediary (World Bank)
 ansGraph[minIndex][0].first += abs(listOfNetAmounts[minIndex].netAmount);
 ansGraph[minIndex][0].second = *(input[minIndex].types.begin());
 int simpleMaxIndex = getSimpleMaxIndex(listOfNetAmounts);
